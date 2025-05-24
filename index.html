@@ -1034,6 +1034,29 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-secondary);
         }
+        .menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.sidebar {
+  transition: transform 0.3s ease;
+}
+
+.sidebar:not(.active) {
+  transform: translateX(-100%);
+}
+
+.sidebar.active {
+  transform: translateX(0%);
+}
+
     </style>
 </head>
   <script>
@@ -1313,12 +1336,17 @@
                 }
             }, 250);
         });
+        
+    document.getElementById('sidebarToggle').addEventListener('click', function () {
+    document.querySelector('.sidebar').classList.toggle('active');
+  });
     </script>
 
 <body>
     <button class="navbar-toggle" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
     </button>
+<button id="sidebarToggle" class="menu-toggle">☰</button>
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-info">
